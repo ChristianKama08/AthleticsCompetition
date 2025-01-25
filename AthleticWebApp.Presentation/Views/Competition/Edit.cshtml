@@ -1,0 +1,47 @@
+﻿@using AthleticWebApp.BusinessLogic.Profiles.DTOs
+@using AthleticWebApp.BusinessLogic.Services.Interfaces
+@model CompetitionDto
+@inject IAthleteService athleteService
+
+<form  asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id"/>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 style="text-align:center"> Enter the Name of Competitions</h2>
+            <hr />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CompetitionName</label>
+            <input asp-for="CompetitionName" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Athlete</label>
+            <select asp-for="AthleteId" asp-items="@(await GetAthletes())" class="form-control">
+                <option value=""> Write the Name of The Athlete</option>
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:150px" > Modification </button>
+
+    </div>
+    @functions {
+        private async Task<List<SelectListItem>> GetAthletes()
+        {
+            var athletes = await athleteService.GetAllAthleteAsync();
+
+            return athletes.Select(x => new SelectListItem
+            {
+                Text = x.FullName,
+                Value = x.Id.ToString(),
+            })
+            .ToList();
+        }
+
+
+    }
+
+
+</form>

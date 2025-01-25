@@ -1,0 +1,45 @@
+﻿@using AthleticWebApp.BusinessLogic.Profiles.DTOs
+<h3 class="text-xl-center"> Country</h3>
+@model List<CountryDto>
+<div class="container p-3"> 
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="" style="color:white;" > Country</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-primary btn-sn" href="/Country/Add" role ="button">
+
+                <i class="bi bi-plus-circle"></i>Whrite the Country
+            </a>
+        </div>
+    </div>
+
+    <br /><br/ >
+    <table class="table table-bordered table-striped table-dark" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var country in Model)
+            {
+                <tr>
+                    <td>@country.Id</td>
+                    <td>@country.Name</td>
+
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="/Country/Edit/@country.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="/Country/DeleteCountry/@country.Id">Delete</a>
+                    </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+</div>

@@ -1,0 +1,44 @@
+﻿@model AthleticWebApp.BusinessLogic.Requests.ResultRequest
+@using AthleticWebApp.BusinessLogic.Services.Interfaces
+@inject ICompetitionService competitionService
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 style="text-align:center"> Enter the Result for the Competition</h2>
+            <hr />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">MeasurementType</label>
+            <input asp-for="MeasurementType" class="form-control"/>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CompetitionName</label>
+            <select asp-for="CompetitionId" asp-items="@(await Getcompetitions())" class="form-control">
+                <option value=""> Choose your Competitons</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary"> Put Result </button>
+
+        </div>
+
+        
+    </div>
+    @functions{
+        private async Task<List<SelectListItem>> Getcompetitions()
+        {
+            var competitions = await competitionService.GetAllCompetitionAsync();
+
+            return competitions.Select(x => new SelectListItem
+            {
+                Text = x.CompetitionName,
+                Value = x.Id.ToString(),
+            })
+            .ToList();
+        }
+
+        
+    }
+</form>

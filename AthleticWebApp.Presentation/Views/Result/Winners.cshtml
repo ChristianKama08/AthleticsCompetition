@@ -1,0 +1,35 @@
+﻿@using AthleticWebApp.DataAccess.Models
+@model List<WinnerOfEachCompetition>
+
+<h2 text-align:center>Result of the winners in each tournment</h2>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="" style="color:white;">Result of the winners in each tournment</h2>
+        </div>
+    </div>
+
+    <br /><br />
+
+    <table class="table table-bordered table-striped table-dark" style="width:100%">
+        <thead>
+            <tr>
+                <th>Athlete</th>
+                <th>Competition</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var result in Model)
+            {
+                <tr>
+                    <td>@result.AthleteName</td>
+                    <td>@result.CompetitionName</td>
+                    <td>@result.Score</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

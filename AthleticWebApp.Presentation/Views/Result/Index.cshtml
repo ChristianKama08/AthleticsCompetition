@@ -1,0 +1,45 @@
+﻿@using AthleticWebApp.BusinessLogic.Profiles.DTOs
+<h3 class="text-xl-center">Result</h3>
+@model List<ResultDto>
+<div class="container p-3">
+	<div class="row pt-4">
+		<div class="col-6">
+			<h2 class="" style="color:white;"> Result</h2>
+		</div>
+		<div class="col-6 text-end">
+			<a class="btn btn-primary btn-sm" href="/Result/Add" role="button">
+				<i class="bi bi-plus-circle"></i> Add Result
+			</a>
+		</div>
+	</div>
+
+	<br /><br />
+
+	<table class="table table-bordered table-striped table-dark" style="width:100%">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>MeasurementType</th>
+				<th>Competition</th>
+			
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var result in Model)
+			{
+				<tr>
+					<td>@result.Id</td>
+					<td>@result.MeasurementType</td>
+					<td>@result.CompetitonName</td>
+					
+					<td>
+						<a class="btn btn-primary btn-sm" href="/Result/Edit/@result.Id">Edit</a>
+						<a class="btn btn-danger btn-sm" href="/Result/DeleteResult/@result.Id">Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
